@@ -21,5 +21,6 @@ from my_app.core import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/sample', views.sample),
-    path('api/sample_get', views.sample_get)
+    path('api/sample_get/title/<slug:title>/number/<int:number>/', views.sample_get)
+    
 ]

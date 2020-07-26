@@ -28,6 +28,11 @@ def sample(request):
 
 @api_view(["GET"])
 @permission_classes((AllowAny,))
-def sample_get(request):
+def sample_get(request, *args, **kwargs):
+    title, number = kwargs['title'], kwargs['number']
+    name = request.GET['name']
+    # whatever you pass in url can be obtained using kwargs like above
+    # Sample URL - http://127.0.0.1:8000/api/sample_get/title/tech/number/69/?name=Aravind
+    print(title, number, name)
     data = SampleUser.objects.all().values('name', 'phone_no', 'email_id')
     return Response({'message': list(data)}, status=HTTP_200_OK)
